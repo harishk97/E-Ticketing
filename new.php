@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>update records</title>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{background-color:#f5f5f5}
+th {
+    background-color:;
+    color: white;
+}
+body {
+	font-size: 120%;
+	 background-image: url("4.jpg");
+   background-size: 100%;
+}
+
+</style>
+</head>
+<body>
+<?php
+$con=mysqli_connect('localhost','root','');
+mysqli_select_db($con,'trains');
+$sql="SELECT * FROM trains";
+$records = mysqli_query($con,$sql);
+?>
+<table>
+<tr>
+<th>tno</th>
+<th>tname</th>
+<th>seats</th>
+</tr>
+<?php
+while($row = mysqli_fetch_array($records)) 
+{
+	
+echo"<tr><form action=try.php method=post>";
+echo"<td><input type=text name=tno value='".$row['tno']."'></td>";
+echo"<td><input type=text name=tname value='".$row['tname']."'></td>";
+echo"<td><input type=text name=seats value='".$row['seats']."'></td>";
+
+echo"<td><input type=submit name='book'>";
+echo"</form></tr>";
+}
+?>
+</body>
+</html>
